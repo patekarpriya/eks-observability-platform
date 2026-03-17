@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKS Observability Platform</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        button {
+            background: #00c6ff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0072ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🚀 EKS Observability Platform</h1>
+            <p>Frontend is running successfully</p>
+            <p id="api-status">Checking backend...</p>
+
+            <button onclick="checkAPI()">Check Backend API</button>
+        </div>
+    </div>
+
+    <script>
+        function checkAPI() {
+            fetch('http://localhost:3000')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('api-status').innerText = data.message;
+                })
+                .catch(() => {
+                    document.getElementById('api-status').innerText = "Backend not reachable ❌";
+                });
+        }
+    </script>
+</body>
+</html>
